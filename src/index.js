@@ -19,7 +19,7 @@ const app = express();
 app.use(cors({ origin: process.env.CORS_ORIGIN || '*' }));
 app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, '..', process.env.UPLOAD_DIR || 'uploads')));
-
+app.get('/health', (req, res) => res.json({ status: 'ok' }));
 app.get('/', (req, res) => { res.json({ status: 'ok', message: 'Hostel Management API is running. This is a backend service with no visual homepage — try /health to check status, or use it through the frontend app.', }); }); 
 
 app.use('/auth', authRoutes);
